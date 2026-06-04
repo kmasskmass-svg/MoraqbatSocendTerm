@@ -1,583 +1,427 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جدول المراقبات - قسم تقنية الأعمال 1447هـ</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <style>
-        :root {
-            --primary-color: #1a5c40;
-            --secondary-color: #2563eb;
-            --bg-color: #f4f7f6;
-            --text-color: #333;
-            --border-color: #cbd5e1;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 20px;
-            color: var(--text-color);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جدول المراقبات النهائية — قسم تقنية الأعمال 1447هـ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --navy:#0c1e2d; --navy2:#1a3448; --gold:#c4962a; --gold2:#e8c04a;
+      --cream:#f8f5ee; --white:#fff; --text:#1a2535; --textmd:#4a5a70;
+      --border:#dee4ef; --even:#f4f7fc; --hi:#fef8e6;
+    }
+    body{font-family:'Tajawal',Arial,sans-serif;background:var(--cream);color:var(--text);direction:rtl;font-size:14px}
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        }
+    /* HEADER */
+    .site-header{background:linear-gradient(155deg,#0a1a27 0%,#1a3448 100%);color:#fff;padding:20px 28px 16px;text-align:center;position:relative;overflow:hidden;border-bottom:3px solid var(--gold)}
+    .site-header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(196,150,42,.04) 0px,rgba(196,150,42,.04) 1px,transparent 1px,transparent 40px)}
+    .site-header>div{position:relative;z-index:1}
+    .hdr-org{font-size:12px;font-weight:300;color:rgba(255,255,255,.65);margin-bottom:3px}
+    .hdr-col{font-size:14px;font-weight:500;color:var(--gold2);margin-bottom:7px}
+    .hdr-title{font-size:17px;font-weight:700;line-height:1.55}
 
-        /* الترويسة العلوية */
-        .main-header {
-            text-align: center;
-            color: var(--primary-color);
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
-        .main-header h2 {
-            margin: 5px 0;
-            font-size: 22px;
-        }
-        .main-header h3 {
-            margin: 5px 0;
-            font-size: 18px;
-            color: #475569;
-        }
+    /* CONTROLS */
+    .ctrl-bar{background:#fff;padding:12px 20px;display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;border-bottom:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.07);position:sticky;top:0;z-index:300}
+    .cg{display:flex;flex-direction:column;gap:5px}
+    .clabel{font-size:11px;font-weight:700;color:var(--textmd);text-transform:uppercase;letter-spacing:.5px}
+    .name-wrap{position:relative;width:250px}
+    .name-inp{width:100%;border:1.5px solid var(--border);border-radius:7px;padding:8px 36px 8px 12px;font-family:'Tajawal',sans-serif;font-size:13.5px;color:var(--text);background:var(--even);outline:none;transition:border-color .2s,box-shadow .2s}
+    .name-inp:focus{border-color:var(--gold);background:#fff;box-shadow:0 0 0 3px rgba(196,150,42,.1)}
+    .name-clear{position:absolute;left:10px;top:50%;transform:translateY(-50%);cursor:pointer;color:var(--textmd);font-size:15px;line-height:1;display:none;user-select:none}
+    .name-clear:hover{color:var(--navy)}
+    .ac-drop{position:absolute;top:calc(100% + 4px);right:0;left:0;background:#fff;border:1.5px solid var(--gold);border-radius:8px;box-shadow:0 8px 28px rgba(0,0,0,.13);z-index:600;max-height:230px;overflow-y:auto;display:none}
+    .ac-item{padding:9px 13px;font-size:13px;cursor:pointer;border-bottom:1px solid #f0f0f0;transition:background .12s}
+    .ac-item:last-child{border-bottom:none}
+    .ac-item:hover,.ac-item.ac-sel{background:var(--hi)}
+    .ac-item mark{background:none;color:var(--gold);font-weight:700}
+    .ac-num{color:var(--textmd);font-size:11px;margin-left:5px}
+    .dg{flex:1;min-width:300px}
+    .date-btns{display:flex;gap:5px;flex-wrap:wrap}
+    .dbtn{border:1.5px solid var(--border);border-radius:6px;padding:5px 10px;font-family:'Tajawal',sans-serif;font-size:11px;font-weight:500;cursor:pointer;color:var(--textmd);background:var(--even);line-height:1.45;text-align:center;transition:all .17s}
+    .dbtn:hover{border-color:var(--gold);color:var(--text);background:#fff}
+    .dbtn.d-active{background:var(--navy);border-color:var(--navy);color:var(--gold2);font-weight:700}
+    .dbtn.d-all{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700}
+    .actions{display:flex;align-items:flex-end;gap:8px}
+    .abtn{padding:8px 15px;border-radius:7px;font-family:'Tajawal',sans-serif;font-size:12.5px;font-weight:700;cursor:pointer;border:none;display:flex;align-items:center;gap:5px;transition:all .17s;white-space:nowrap}
+    .abtn-print{background:var(--navy);color:#fff}
+    .abtn-print:hover{background:var(--navy2)}
+    .abtn-img{background:var(--gold);color:var(--navy)}
+    .abtn-img:hover{background:var(--gold2)}
+    .abtn-img:disabled{opacity:.6;cursor:not-allowed}
+    .res-bar{padding:5px 20px 2px;font-size:12px;color:var(--textmd);min-height:20px}
 
-        .section {
-            background: #fdfdfd;
-            border: 1px solid #e0e6ed;
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-        }
-        
-        .section h2 {
-            text-align: center;
-            color: var(--primary-color);
-            margin-top: 0;
-        }
+    /* TABLE */
+    .tbl-wrap{padding:12px 14px 28px;overflow-x:auto}
+    table.mt{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 3px 20px rgba(0,0,0,.1);min-width:960px;font-size:13px}
+    .mt thead tr:first-child th{background:var(--navy);color:#fff;padding:10px 6px 8px;text-align:center;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,.08);transition:background .2s}
+    .mt thead tr:first-child th.hf{background:#091525;font-size:12px}
+    .mt thead tr:first-child th.col-act{background:#a07a10!important;color:#fff!important}
+    .mt thead tr:nth-child(2) th{background:var(--navy2);color:var(--gold2);padding:5px 6px;text-align:center;font-size:11px;font-weight:500;border:1px solid rgba(255,255,255,.06);transition:background .2s,color .2s}
+    .mt thead tr:nth-child(2) th.col-act{background:var(--gold)!important;color:var(--navy)!important;font-weight:700}
+    .mt tbody tr{border-bottom:1px solid var(--border);transition:background .12s}
+    .mt tbody tr:nth-child(even){background:var(--even)}
+    .mt tbody tr:hover{background:#ebf2fc}
+    .mt tbody tr.tr-hide{display:none}
+    .mt tbody tr.tr-hi{background:var(--hi)!important}
+    .mt td{padding:9px 6px;text-align:center;border-left:1px solid var(--border)}
+    td.td-id{font-weight:700;color:var(--textmd);font-size:12px;width:34px}
+    td.td-name{text-align:right;padding-right:14px;font-size:13px;font-weight:500;min-width:168px}
+    td.td-room{font-size:14px;font-weight:600;color:var(--navy2);min-width:50px;position:relative;transition:background .15s}
+    td.td-room.empty{color:#bfc5d0;font-size:12px;font-weight:400}
+    td.td-room.ca{background:rgba(196,150,42,.12)}
+    td.td-room.ca::after{content:'';position:absolute;inset:2px;border:1.5px solid rgba(196,150,42,.5);border-radius:3px}
+    td.td-tot{background:#e4edf8;font-weight:700;color:var(--navy);font-size:13px;min-width:42px}
+    .mt tfoot td{background:var(--navy)!important;color:var(--gold2);font-weight:700;border-color:rgba(255,255,255,.08)!important;padding:10px 6px}
+    .mt tfoot td.td-name{color:rgba(255,255,255,.65);font-size:12px;font-weight:500}
+    .mt tfoot td.td-tot{background:#091525!important;color:var(--gold)!important;font-size:14px}
 
-        .input-group {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        input[type="text"], select {
-            width: 60%;
-            min-width: 250px;
-            padding: 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        
-        input[type="text"]:focus, select:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        button {
-            padding: 14px 28px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.1s;
-        }
-        button:hover {
-            background-color: #12402c;
-        }
-        button:active {
-            transform: scale(0.98);
-        }
-
-        /* تنسيق الجداول والنتائج */
-        .result-container {
-            padding: 15px;
-            background: #fff;
-            border-radius: 8px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-        th, td {
-            border: 1px solid var(--border-color);
-            padding: 14px;
-            text-align: center;
-        }
-        th {
-            background-color: var(--primary-color);
-            color: #ffffff;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {background-color: #f8fafc;}
-        tr:hover {background-color: #e2e8f0;}
-        
-        .no-data {
-            text-align: center;
-            color: #dc2626;
-            font-weight: bold;
-            padding: 15px;
-            background: #fef2f2;
-            border-radius: 8px;
-            border: 1px solid #fecaca;
-        }
-
-        /* أزرار الأسماء المتشابهة */
-        .choice-btn {
-            background-color: var(--secondary-color);
-            padding: 10px 20px;
-            margin: 5px;
-            font-size: 15px;
-        }
-        .choice-btn:hover {
-            background-color: #1d4ed8;
-        }
-
-        /* أزرار الطباعة والتحميل */
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        .btn-print { background-color: #475569; }
-        .btn-print:hover { background-color: #334155; }
-        .btn-download { background-color: #059669; }
-        .btn-download:hover { background-color: #047857; }
-
-        /* تنسيقات الطباعة */
-        @media print {
-            body { background: #fff; padding: 0; }
-            .container { box-shadow: none; padding: 0; }
-            .section { border: none; box-shadow: none; padding: 0; margin: 0; }
-            .input-group, .action-buttons, p { display: none !important; }
-            .hide-on-print { display: none !important; }
-        }
-    </style>
+    @media print{
+      .ctrl-bar,.res-bar,.actions{display:none!important}
+      .tbl-wrap{padding:0;overflow:visible}
+      .site-header{position:static!important}
+      body{background:#fff}
+      .mt{box-shadow:none;border-radius:0;min-width:auto}
+      *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+      @page{size:landscape;margin:6mm}
+    }
+  </style>
 </head>
 <body>
 
-<div class="container" id="captureArea">
-    <div class="main-header">
-        <h2>المؤسسة العامة للتدريب التقني والمهني</h2>
-        <h2>الكلية التقنية بأبها</h2>
-        <h3>قسم تقنية الأعمال</h3>
-        <h3 style="margin-top:15px; color: #1a5c40;">جدول المراقبات (صباحي) - الفصل الثاني1447هـ</h3>
-    </div>
+<header class="site-header" id="siteHeader">
+  <div class="hdr-org">المؤسسة العامة للتدريب التقني والمهني</div>
+  <div class="hdr-col">الكلية التقنية بأبها &nbsp;•&nbsp; قسم تقنية الأعمال</div>
+  <div class="hdr-title">جدول المراقبات للاختبارات النهائية — الفصل التدريبي الثاني 1447هـ</div>
+</header>
 
-    <div class="section" id="sectionTeacher">
-        <h2>البحث ببيانات المدرب</h2>
-        <p style="text-align: center;">أدخل اسم المدرب للبحث عن جدول المراقبات الخاص به:</p>
-        <div class="input-group">
-            <input type="text" id="teacherName" list="teachersList" placeholder="مثال: كليب، تركي، خالد..." autocomplete="off">
-            <datalist id="teachersList"></datalist>
-            <button onclick="searchByTeacher()">بحث</button>
-        </div>
-        <div id="teacherResult" class="result-container"></div>
+<div class="ctrl-bar" id="ctrlBar">
+  <div class="cg">
+    <div class="clabel">🔍 البحث بالاسم</div>
+    <div class="name-wrap">
+      <input type="text" class="name-inp" id="nameInp" placeholder="اكتب حرفاً أو اسم المدرب…" autocomplete="off">
+      <span class="name-clear" id="nameClear" title="مسح">✕</span>
+      <div class="ac-drop" id="acDrop"></div>
     </div>
+  </div>
+  <div class="cg dg">
+    <div class="clabel">📅 التصفية بالتاريخ</div>
+    <div class="date-btns" id="dateBtns">
+      <button class="dbtn d-all" data-di="-1">الكل</button>
+    </div>
+  </div>
+  <div class="actions">
+    <button class="abtn abtn-print" onclick="window.print()">🖨 طباعة</button>
+    <button class="abtn abtn-img" id="imgBtn">📸 حفظ صورة</button>
+  </div>
+</div>
+<div class="res-bar" id="resBar"></div>
 
-    <div class="section" id="sectionDay">
-        <h2>البحث حسب اليوم</h2>
-        <p style="text-align: center;">اختر اليوم لعرض جميع المدربين المكلفين بالمراقبة:</p>
-        <div class="input-group">
-            <select id="daySelect">
-                <option value="الأحد ١٤٤٧/١٢/٢١">الأحد ١٤٤٧/١٢/٢١</option>
-                <option value="الإثنين ١٤٤٧/١٢/٢٢">الإثنين ١٤٤٧/١٢/٢٢</option>
-                <option value="الثلاثاء ١٤٤٧/١٢/٢٣">الثلاثاء ١٤٤٧/١٢/٢٣</option>
-                <option value="الأربعاء ١٤٤٧/١٢/٢٤">الأربعاء ١٤٤٧/١٢/٢٤</option>
-                <option value="الخميس ١٤٤٧/١٢/٢٥">الخميس ١٤٤٧/١٢/٢٥</option>
-                <option value="الأحد ١٤٤٧/١٢/٢٨">الأحد ١٤٤٧/١٢/٢٨</option>
-                <option value="الاثنين ١٤٤٧/١٢/٢٩">الاثنين ١٤٤٧/١٢/٢٩</option>
-            </select>
-            <button onclick="searchByDay()">بحث</button>
-        </div>
-        <div id="dayResult" class="result-container"></div>
-    </div>
+<div class="tbl-wrap">
+  <table class="mt" id="mainTbl">
+    <thead>
+      <tr id="hdr1">
+        <th class="hf" rowspan="2">م</th>
+        <th class="hf" rowspan="2" style="text-align:right;padding-right:14px;min-width:168px">اسم المدرب</th>
+        <!-- injected -->
+        <th class="hf" rowspan="2" style="min-width:42px">المجموع</th>
+      </tr>
+      <tr id="hdr2"><!-- injected --></tr>
+    </thead>
+    <tbody id="tBody"></tbody>
+    <tfoot id="tFoot"></tfoot>
+  </table>
 </div>
 
 <script>
-    // قاعدة البيانات بدون أي تغيير نهائياً
-    const scheduleData = [
-        // 1
-        { teacher: "تركي أحمد عسيري", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠١" },
-        { teacher: "تركي أحمد عسيري", date: "الإثنين ١٤٤٧/١٢/٢٢", period: "الأولى", room: "٣٠١" },
-        { teacher: "تركي أحمد عسيري", date: "الأربعاء ١٤٤٧/١٢/٢٤", period: "الأولى", room: "٣٠١" },
-        { teacher: "تركي أحمد عسيري", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠١" },
-        { teacher: "تركي أحمد عسيري", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠١" },
-        { teacher: "تركي أحمد عسيري", date: "الاثنين ١٤٤٧/١٢/٢٩", period: "الأولى", room: "٣٠٢" },
+/* ── DATA ─────────────────────────────────────────────────────── */
 
-        // 2
-        { teacher: "خالد مداوي القحطاني", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠١" },
-        { teacher: "خالد مداوي القحطاني", date: "الإثنين ١٤٤٧/١٢/٢٢", period: "الأولى", room: "٣٠١" },
-        { teacher: "خالد مداوي القحطاني", date: "الأربعاء ١٤٤٧/١٢/٢٤", period: "الأولى", room: "٣٠٢" },
-        { teacher: "خالد مداوي القحطاني", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠١" },
-        { teacher: "خالد مداوي القحطاني", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠١" },
-        { teacher: "خالد مداوي القحطاني", date: "الاثنين ١٤٤٧/١٢/٢٩", period: "الأولى", room: "٣٠٤" },
+// 7 dates, 4 of them have 2 periods (الأولى+الثانية)
+// Each date entry has: day, date, cols[] = indices into trainer.r[] array
+const DATES = [
+  {day:'الأحد',    dd:'21/12/1447', cols:[0,1],  periods:['الأولى','الثانية']},
+  {day:'الإثنين', dd:'22/12/1447', cols:[2],    periods:['الأولى']},
+  {day:'الثلاثاء',dd:'23/12/1447', cols:[3],    periods:['الأولى']},
+  {day:'الأربعاء',dd:'24/12/1447', cols:[4,5],  periods:['الأولى','الثانية']},
+  {day:'الخميس',  dd:'25/12/1447', cols:[6,7],  periods:['الأولى','الثانية']},
+  {day:'الأحد',   dd:'28/12/1447', cols:[8,9],  periods:['الأولى','الثانية']},
+  {day:'الإثنين', dd:'29/12/1447', cols:[10],   periods:['الأولى']},
+];
 
-        // 3
-        { teacher: "سعيد عبد الرحمن الشهري", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠٢" },
-        { teacher: "سعيد عبد الرحمن الشهري", date: "الإثنين ١٤٤٧/١٢/٢٢", period: "الأولى", room: "٣٠٢" },
-        { teacher: "سعيد عبد الرحمن الشهري", date: "الثلاثاء ١٤٤٧/١٢/٢٣", period: "الأولى", room: "٣١٠" },
-        { teacher: "سعيد عبد الرحمن الشهري", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠٢" },
-        { teacher: "سعيد عبد الرحمن الشهري", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠٢" },
-        { teacher: "سعيد عبد الرحمن الشهري", date: "الاثنين ١٤٤٧/١٢/٢٩", period: "الأولى", room: "٣٠٤" },
+// 11 room columns per trainer (indices 0-10), mapped to date-periods above
+const TRAINERS = [
+  {id:1,  name:'تركي أحمد عسيري',            r:['306','','301','','301','','','','308','301','302']},
+  {id:2,  name:'خالد مداوي القحطاني',         r:['301','','308','','302','','','','311','306','304']},
+  {id:3,  name:'سعيد عبدالرحمن الشهري',      r:['305','','','304','','','303','','311','302','304']},
+  {id:4,  name:'علي محمد آل موسى',            r:['302','304','302','','304','','','','310','309','']},
+  {id:5,  name:'عبدالله سعد العسيري',         r:['308','','302','','303','','','','310','303','305']},
+  {id:6,  name:'محمد جبران آل سفران',         r:['303','','303','','304','','301','','301','','']},
+  {id:7,  name:'خالد عبدالله السرحاني',       r:['311','','303','','','301','','301','309','310','']},
+  {id:8,  name:'عضوان سعيد الأحمري',          r:['304','304','304','','305','','','','308','304','']},
+  {id:9,  name:'إبراهيم سعيد الشهراني',      r:['309','','','302','','','302','','305','310','305']},
+  {id:10, name:'محمد علي عسيري',              r:['301','303','','304','','','302','','306','311','']},
+  {id:11, name:'عبدالعزيز عبدالله حرمل',     r:['306','','304','309','','','301','','306','311','']},
+  {id:12, name:'ظافر سعيد آل صنيج',          r:['302','','305','','302','','','','305','312','']},
+  {id:13, name:'علي محمد عسيري',              r:['308','302','','308','','','303','','304','301','']},
+  {id:14, name:'حسن مانع آل عمير',           r:['305','306','','308','303','','','','304','','302']},
+  {id:15, name:'ناصر علي آل مانع',           r:['309','','','306','','','304','','303','','301']},
+  {id:16, name:'ظافر عبدالله الشهري',        r:['303','306','','301','','','304','','303','312','']},
+  {id:17, name:'الحسين سالم آل عثمان',       r:['310','305','','305','','','305','','','303','']},
+  {id:18, name:'حسن أحمد السيد',             r:['','','306','305','','301','305','302','','','303']},
+  {id:19, name:'عبدالرحمن عبدالله الرعيني',  r:['304','','306','303','305','','','','302','308','']},
+  {id:20, name:'كليب أحمد الزهراني',         r:['311','305','301','','301','','','','302','302','']},
+  {id:21, name:'عبدالله صالح آل قبيل',       r:['312','302','','303','','','306','','309','308','']},
+  {id:22, name:'عبدالرحمن سعيد آل حمحوم',   r:['312','301','','302','','','306','','','304','']},
+  {id:23, name:'عبدالسلام مسفر القحطاني',    r:['313','303','308','','','302','','','','305','']},
+  {id:24, name:'عبدالله يحيى آل فائع',       r:['310','','','309','','','','302','','305','303']},
+  {id:25, name:'يحيى محمد عسيري',             r:['313','','','306','','','','301','301','306','301']},
+  {id:26, name:'عبدالعزيز هادي القحطاني',    r:['','301','305','301','','302','','','','309','']},
+];
 
-        // 4
-        { teacher: "علي محمد آل موسى", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠٢" },
-        { teacher: "علي محمد آل موسى", date: "الإثنين ١٤٤٧/١٢/٢٢", period: "الأولى", room: "٣٠٢" },
-        { teacher: "علي محمد آل موسى", date: "الأربعاء ١٤٤٧/١٢/٢٤", period: "الأولى", room: "٣٠٤" },
-        { teacher: "علي محمد آل موسى", date: "الأربعاء ١٤٤٧/١٢/٢٤", period: "الثانية", room: "٣٠١" },
-        { teacher: "علي محمد آل موسى", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠٩" },
-        { teacher: "علي محمد آل موسى", date: "الاثنين ١٤٤٧/١٢/٢٩", period: "الأولى", room: "٣٠٥" },
+/* ── STATE ────────────────────────────────────────────────────── */
+let activeDi = -1; // active date index (-1 = all)
+let nameQ    = '';
 
-        // 5
-        { teacher: "عبد الله سعد العسيري", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠٣" },
-        { teacher: "عبد الله سعد العسيري", date: "الإثنين ١٤٤٧/١٢/٢٢", period: "الأولى", room: "٣٠٣" },
-        { teacher: "عبد الله سعد العسيري", date: "الأربعاء ١٤٤٧/١٢/٢٤", period: "الأولى", room: "٣٠٣" },
-        { teacher: "عبد الله سعد العسيري", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠٢" },
-        { teacher: "عبد الله سعد العسيري", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠٣" },
-        { teacher: "عبد الله سعد العسيري", date: "الاثنين ١٤٤٧/١٢/٢٩", period: "الأولى", room: "٣٠٥" },
+/* ── BUILD HEADERS ────────────────────────────────────────────── */
+(function(){
+  const r1   = document.getElementById('hdr1');
+  const r2   = document.getElementById('hdr2');
+  const btns = document.getElementById('dateBtns');
+  const last = r1.lastElementChild;
 
-        // 6
-        { teacher: "محمد جبران آل سفران", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠٣" },
-        { teacher: "محمد جبران آل سفران", date: "الإثنين ١٤٤٧/١٢/٢٢", period: "الأولى", room: "٣٠٣" },
-        { teacher: "محمد جبران آل سفران", date: "الأربعاء ١٤٤٧/١٢/٢٤", period: "الأولى", room: "٣٠٤" },
-        { teacher: "محمد جبران آل سفران", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠٣" },
-        { teacher: "محمد جبران آل سفران", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الثانية", room: "٣٠١" },
+  DATES.forEach((d, di) => {
+    const span = d.cols.length;
 
-        // 7
-        { teacher: "خالد عبد الله السرحاني", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠٤" },
-        { teacher: "خالد عبد الله السرحاني", date: "الإثنين ١٤٤٧/١٢/٢٢", period: "الأولى", room: "٣٠٤" },
-        { teacher: "خالد عبد الله السرحاني", date: "الأربعاء ١٤٤٧/١٢/٢٤", period: "الثانية", room: "٣٠١" },
-        { teacher: "خالد عبد الله السرحاني", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠٣" },
-        { teacher: "خالد عبد الله السرحاني", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣١١" },
-        { teacher: "خالد عبد الله السرحاني", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣١٠" },
+    // Row 1: date name (colspan if 2 periods)
+    const t1 = document.createElement('th');
+    t1.id = `h1d${di}`;
+    if (span > 1) t1.colSpan = span;
+    t1.innerHTML = `${d.day}<br><span style="color:var(--gold2);font-size:10.5px;font-weight:400">${d.dd}</span>`;
+    r1.insertBefore(t1, last);
 
-        // 8
-        { teacher: "عضوان سعيد الأحمري", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠٤" },
-        { teacher: "عضوان سعيد الأحمري", date: "الإثنين ١٤٤٧/١٢/٢٢", period: "الأولى", room: "٣٠٤" },
-        { teacher: "عضوان سعيد الأحمري", date: "الأربعاء ١٤٤٧/١٢/٢٤", period: "الأولى", room: "٣٠٥" },
-        { teacher: "عضوان سعيد الأحمري", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠٤" },
-        { teacher: "عضوان سعيد الأحمري", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠٤" },
-        { teacher: "عضوان سعيد الأحمري", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣١١" },
-
-        // 9
-        { teacher: "ابراهيم سعيد الشهراني", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠٥" },
-        { teacher: "ابراهيم سعيد الشهراني", date: "الثلاثاء ١٤٤٧/١٢/٢٣", period: "الأولى", room: "٣١٠" },
-        { teacher: "ابراهيم سعيد الشهراني", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠٤" },
-        { teacher: "ابراهيم سعيد الشهراني", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣١٠" },
-        { teacher: "ابراهيم سعيد الشهراني", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣١٠" },
-        { teacher: "ابراهيم سعيد الشهراني", date: "الاثنين ١٤٤٧/١٢/٢٩", period: "الأولى", room: "٣٠٢" },
-
-        // 10
-        { teacher: "محمد علي عسيري", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠٥" },
-        { teacher: "محمد علي عسيري", date: "الأحد ١٤٤٧/١٢/٢١", period: "الثانية", room: "٣٠٤" },
-        { teacher: "محمد علي عسيري", date: "الإثنين ١٤٤٧/١٢/٢٢", period: "الأولى", room: "٣٠٥" },
-        { teacher: "محمد علي عسيري", date: "الثلاثاء ١٤٤٧/١٢/٢٣", period: "الأولى", room: "٣٠٤" },
-        { teacher: "محمد علي عسيري", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠٥" },
-        { teacher: "محمد علي عسيري", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣١٠" },
-
-        // 11
-        { teacher: "عبد العزيز عبد الله حرمل", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠٦" },
-        { teacher: "عبد العزيز عبد الله حرمل", date: "الإثنين ١٤٤٧/١٢/٢٢", period: "الأولى", room: "٣٠٦" },
-        { teacher: "عبد العزيز عبد الله حرمل", date: "الثلاثاء ١٤٤٧/١٢/٢٣", period: "الأولى", room: "٣٠٩" },
-        { teacher: "عبد العزيز عبد الله حرمل", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠٥" },
-        { teacher: "عبد العزيز عبد الله حرمل", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠١" },
-        { teacher: "عبد العزيز عبد الله حرمل", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣١١" }, 
-
-        // 12
-        { teacher: "ظافر سعيد ال صنيج", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠٦" },
-        { teacher: "ظافر سعيد ال صنيج", date: "الإثنين ١٤٤٧/١٢/٢٢", period: "الأولى", room: "٣٠٦" },
-        { teacher: "ظافر سعيد ال صنيج", date: "الثلاثاء ١٤٤٧/١٢/٢٤", period: "الأولى", room: "٣٠٢" },
-        { teacher: "ظافر سعيد ال صنيج", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠٦" },
-        { teacher: "ظافر سعيد ال صنيج", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠٩" },
-        { teacher: "ظافر سعيد ال صنيج", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣١١" },
-
-        // 13
-        { teacher: "علي محمد عسيري", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠٨" },
-        { teacher: "علي محمد عسيري", date: "الثلاثاء ١٤٤٧/١٢/٢٣", period: "الأولى", room: "٣٠٨" },
-        { teacher: "علي محمد عسيري", date: "الأربعاء ١٤٤٧/١٢/٢٤", period: "الأولى", room: "٣٠٢" },
-        { teacher: "علي محمد عسيري", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠٦" },
-        { teacher: "علي محمد عسيري", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠٨" },
-        { teacher: "علي محمد عسيري", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠٦" },
-
-        // 14
-        { teacher: "حسن مانع آل عمير", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠٨" },
-        { teacher: "حسن مانع آل عمير", date: "الأحد ١٤٤٧/١٢/٢١", period: "الثانية", room: "٣٠٣" },
-        { teacher: "حسن مانع آل عمير", date: "الثلاثاء ١٤٤٧/١٢/٢3", period: "الأولى", room: "٣٠٨" },
-        { teacher: "حسن مانع آل عمير", date: "الأربعاء ١٤٤٧/١٢/٢٤", period: "الأولى", room: "٣٠٣" },
-        { teacher: "حسن مانع آل عمير", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠٨" },
-        { teacher: "حسن مانع آل عمير", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣١٢" },
-
-        // 15
-        { teacher: "ناصر علي ال مانع", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠٩" },
-        { teacher: "ناصر علي ال مانع", date: "الأحد ١٤٤٧/١٢/٢١", period: "الثانية", room: "٣٠٤" },
-        { teacher: "ناصر علي ال مانع", date: "الثلاثاء ١٤٤٧/١٢/23", period: "الأولى", room: "٣٠٦" },
-        { teacher: "ناصر علي ال مانع", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠٦" },
-        { teacher: "ناصر علي ال مانع", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣١٢" },
-
-        // 16
-        { teacher: "ظافر عبد الله الشهري", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣٠٩" },
-        { teacher: "ظافر عبد الله الشهري", date: "الأحد ١٤٤٧/١٢/٢1", period: "الثانية", room: "٣٠٣" },
-        { teacher: "ظافر عبد الله الشهري", date: "الثلاثاء ١٤٤٧/١٢/٢3", period: "الأولى", room: "٣٠٦" },
-        { teacher: "ظافر عبد الله الشهري", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠٢" },
-        { teacher: "ظافر عبد الله الشهري", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠٦" },
-        { teacher: "ظافر عبد الله الشهري", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠٢" },
-
-        // 17
-        { teacher: "الحسين سالم آل عثمان", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣١٠" },
-        { teacher: "الحسين سالم آل عثمان", date: "الإثنين ١٤٤٧/١٢/٢٢", period: "الأولى", room: "٣٠٧" },
-        { teacher: "الحسين سالم آل عثمان", date: "الثلاثاء ١٤٤٧/١٢/٢٣", period: "الأولى", room: "٣٠٥" },
-        { teacher: "الحسين سالم آل عثمان", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠٥" },
-        { teacher: "الحسين سالم آل عثمان", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠٨" },
-
-        // 18
-        { teacher: "حسن احمد الحسن السيد", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣١٠" },
-        { teacher: "حسن احمد الحسن السيد", date: "الأحد ١٤٤٧/١٢/٢١", period: "الثانية", room: "٣٠٢" },
-        { teacher: "حسن احمد الحسن السيد", date: "الإثنين ١٤٤٧/١٢/٢٢", period: "الأولى", room: "٣٠٧" },
-        { teacher: "حسن احمد الحسن السيد", date: "الثلاثاء ١٤٤٧/١٢/٢٣", period: "الأولى", room: "٣٠٥" },
-        { teacher: "حسن احمد الحسن السيد", date: "الأحد ١٤٤٧/١٢/٢8", period: "الأولى", room: "٣٠٥" },
-        { teacher: "حسن احمد الحسن السيد", date: "الاثنين ١٤٤٧/١٢/٢٩", period: "الأولى", room: "٣٠١" },
-
-        // 19
-        { teacher: "عبد الرحمن عبد الله الرعيني", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣١١" },
-        { teacher: "عبد الرحمن عبد الله الرعيني", date: "الأحد ١٤٤٧/١٢/٢١", period: "الثانية", room: "٣٠٢" },
-        { teacher: "عبد الرحمن عبد الله الرعيني", date: "الثلاثاء ١٤٤٧/١٢/٢3", period: "الأولى", room: "٣٠٤" },
-        { teacher: "عبد الرحمن عبد الله الرعيني", date: "الأربعاء ١٤٤٧/١٢/٢٤", period: "الأولى", room: "٣٠٥" },
-        { teacher: "عبد الرحمن عبد الله الرعيني", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠٤" },
-        { teacher: "عبد الرحمن عبد الله الرعيني", date: "الاثنين ١٤٤٧/١٢/٢٩", period: "الأولى", room: "٣٠٣" },
-
-        // 20
-        { teacher: "كليب احمد ضيف الله الزهراني", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣١١" },
-        { teacher: "كليب احمد ضيف الله الزهراني", date: "الأحد ١٤٤٧/١٢/٢1", period: "الثانية", room: "٣٠٦" },
-        { teacher: "كليب احمد ضيف الله الزهراني", date: "الأربعاء ١٤٤٧/١٢/٢٤", period: "الأولى", room: "٣٠١" },
-        { teacher: "كليب احمد ضيف الله الزهراني", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠٤" },
-        { teacher: "كليب احمد ضيف الله الزهراني", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠٢" },
-        { teacher: "كليب احمد ضيف الله الزهراني", date: "الاثنين ١٤٤٧/١٢/٢٩", period: "الأولى", room: "٣٠١" },
-
-        // 21
-        { teacher: "عبد الله صالح محمد ال قبيل", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣١٢" },
-        { teacher: "عبد الله صالح محمد ال قبيل", date: "الأحد ١٤٤٧/١٢/٢١", period: "الثانية", room: "٣٠٦" },
-        { teacher: "عبد الله صالح محمد ال قبيل", date: "الثلاثاء ١٤٤٧/١٢/٢3", period: "الأولى", room: "٣٠٣" },
-        { teacher: "عبد الله صالح محمد ال قبيل", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠٢" },
-        { teacher: "عبد الله صالح محمد ال قبيل", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠٣" },
-        { teacher: "عبد الله صالح محمد ال قبيل", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠٨" },
-
-        // 22
-        { teacher: "عبد الرحمن سعيد آل حمحوم", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣١٢" },
-        { teacher: "عبد الرحمن سعيد آل حمحوم", date: "الأحد ١٤٤٧/١٢/٢1", period: "الثانية", room: "٣٠٥" },
-        { teacher: "عبد الرحمن سعيد آل حمحوم", date: "الثلاثاء ١٤٤٧/١٢/٢٣", period: "الأولى", room: "٣٠٣" },
-        { teacher: "عبد الرحمن سعيد آل حمحوم", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠٣" },
-        { teacher: "عبد الرحمن سعيد آل حمحوم", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠٤" },
-
-        // 23
-        { teacher: "عبد السلام مسفر القحطاني", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣١٣" },
-        { teacher: "عبد السلام مسفر القحطاني", date: "الأحد ١٤٤٧/١٢/٢1", period: "الثانية", room: "٣٠٥" },
-        { teacher: "عبد السلام مسفر القحطاني", date: "الثلاثاء ١٤٤٧/١٢/٢٣", period: "الأولى", room: "٣٠٢" },
-        { teacher: "عبد السلام مسفر القحطاني", date: "الخميس ١٤٤٧/١٢/٢٥", period: "الأولى", room: "٣٠١" },
-        { teacher: "عبد السلام مسفر القحطاني", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠٢" },
-        { teacher: "عبد السلام مسفر القحطاني", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠٥" },
-
-        // 24
-        { teacher: "عبد الله يحيى محمد ال فائع", date: "الثلاثاء ١٤٤٧/١٢/23", period: "الأولى", room: "٣٠٩" },
-        { teacher: "عبد الله يحيى محمد ال فائع", date: "الأربعاء ١٤٤٧/١٢/٢٤", period: "الأولى", room: "٣٠٢" },
-        { teacher: "عبد الله يحيى محمد ال فائع", date: "الأربعاء ١٤٤٧/١٢/٢٤", period: "الثانية", room: "٣٠٢" },
-        { teacher: "عبد الله يحيى محمد ال فائع", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠٢" },
-        { teacher: "عبد الله يحيى محمد ال فائع", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠٥" },
-
-        // 25
-        { teacher: "يحيى محمد ناصر عسيري", date: "الأحد ١٤٤٧/١٢/٢١", period: "الأولى", room: "٣١٣" },
-        { teacher: "يحيى محمد ناصر عسيري", date: "الأحد ١٤٤٧/١٢/21", period: "الثانية", room: "٣٠١" },
-        { teacher: "يحيى محمد ناصر عسيري", date: "الثلاثاء ١٤٤٧/١٢/٢٣", period: "الأولى", room: "٣٠١" },
-        { teacher: "يحيى محمد ناصر عسيري", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠٩" },
-        { teacher: "يحيى محمد ناصر عسيري", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠٦" },
-        { teacher: "يحيى محمد ناصر عسيري", date: "الاثنين ١٤٤٧/١٢/٢٩", period: "الأولى", room: "٣٠٣" },
-
-        // 26
-        { teacher: "عبد العزيز هادي القحطاني", date: "الأحد ١٤٤٧/١٢/٢١", period: "الثانية", room: "٣٠١" },
-        { teacher: "عبد العزيز هادي القحطاني", date: "الإثنين ١٤٤٧/١٢/٢٢", period: "الأولى", room: "٣٠٥" },
-        { teacher: "عبد العزيز هادي القحطاني", date: "الثلاثاء ١٤٤٧/١٢/٢٣", period: "الأولى", room: "٣٠١" },
-        { teacher: "عبد العزيز هادي القحطاني", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الأولى", room: "٣٠١" },
-        { teacher: "عبد العزيز هادي القحطاني", date: "الأحد ١٤٤٧/١٢/٢٨", period: "الثانية", room: "٣٠٩" }
-    ];
-
-    // استخراج أسماء المدربين الفريدة لملء القائمة المنسدلة التلقائية
-    const uniqueTeachers = [...new Set(scheduleData.map(item => item.teacher))];
-    const dataList = document.getElementById('teachersList');
-    uniqueTeachers.forEach(name => {
-        const option = document.createElement('option');
-        option.value = name;
-        dataList.appendChild(option);
+    // Row 2: period labels
+    d.periods.forEach((p, pi) => {
+      const t2 = document.createElement('th');
+      t2.id = `h2c${d.cols[pi]}`;
+      t2.textContent = p;
+      r2.appendChild(t2);
     });
 
-    // إنشاء أزرار الطباعة والتحميل
-    function getActionButtonsHTML(targetSectionId) {
-        return `
-            <div class="action-buttons">
-                <button class="btn-print" onclick="printSection('${targetSectionId}')">🖨️ طباعة الجدول</button>
-                <button class="btn-download" onclick="downloadImage()">🖼️ تحميل كصورة</button>
-            </div>
-        `;
-    }
+    // Date filter button
+    const btn = document.createElement('button');
+    btn.className = 'dbtn';
+    btn.dataset.di = di;
+    btn.innerHTML = `${d.day}<br><small style="font-size:10px;opacity:.8">${d.dd}</small>`;
+    btn.addEventListener('click', () => setDate(di));
+    btns.appendChild(btn);
+  });
 
-    // إعداد الشاشة للطباعة (إخفاء الأقسام غير المطلوبة)
-    function printSection(activeSectionId) {
-        const sectionTeacher = document.getElementById('sectionTeacher');
-        const sectionDay = document.getElementById('sectionDay');
-        
-        if(activeSectionId === 'sectionTeacher') {
-            sectionDay.classList.add('hide-on-print');
-            sectionTeacher.classList.remove('hide-on-print');
+  document.querySelector('[data-di="-1"]').addEventListener('click', () => setDate(-1));
+})();
+
+/* ── BUILD ROWS ───────────────────────────────────────────────── */
+(function(){
+  const tbody = document.getElementById('tBody');
+  TRAINERS.forEach(t => {
+    const tr = document.createElement('tr');
+    tr.id = `tr_${t.id}`;
+    tr.dataset.name = t.name;
+    const total = t.r.filter(v => v !== '').length;
+
+    let html = `<td class="td-id">${t.id}</td>`;
+    html += `<td class="td-name"><span class="nm">${esc(t.name)}</span></td>`;
+    t.r.forEach((rm, ci) => {
+      const emp = rm === '';
+      html += `<td class="td-room${emp?' empty':''}" data-ci="${ci}">${emp?'—':rm}</td>`;
+    });
+    html += `<td class="td-tot">${total}</td>`;
+    tr.innerHTML = html;
+    tbody.appendChild(tr);
+  });
+})();
+
+/* ── BUILD FOOTER ─────────────────────────────────────────────── */
+(function(){
+  const tr = document.createElement('tr');
+  // column totals
+  const totals = Array.from({length:11}, (_,i) => TRAINERS.filter(t => t.r[i] !== '').length);
+  let html = `<td class="td-id"></td><td class="td-name">مجموع اللجان</td>`;
+  totals.forEach(c => html += `<td class="td-room">${c}</td>`);
+  html += `<td class="td-tot">148</td>`;
+  tr.innerHTML = html;
+  document.getElementById('tFoot').appendChild(tr);
+})();
+
+/* ── DATE FILTER ──────────────────────────────────────────────── */
+function setDate(di) {
+  activeDi = di;
+  const d = di >= 0 ? DATES[di] : null;
+
+  // Buttons
+  document.querySelectorAll('.dbtn').forEach(b => {
+    const bdi = parseInt(b.dataset.di);
+    b.classList.remove('d-active','d-all');
+    if (bdi === di) b.classList.add(di === -1 ? 'd-all' : 'd-active');
+  });
+
+  // Header highlight
+  DATES.forEach((dd, i) => {
+    const on = i === di;
+    const t1 = document.getElementById(`h1d${i}`);
+    if (t1) t1.classList.toggle('col-act', on);
+    dd.cols.forEach(ci => {
+      const t2 = document.getElementById(`h2c${ci}`);
+      if (t2) t2.classList.toggle('col-act', on);
+    });
+  });
+
+  // Cell highlight
+  document.querySelectorAll('[data-ci]').forEach(td => {
+    const ci = +td.dataset.ci;
+    const on = d ? d.cols.includes(ci) : false;
+    td.classList.toggle('ca', on);
+  });
+
+  applyFilters();
+}
+
+/* ── FILTERS ──────────────────────────────────────────────────── */
+function wordMatch(name, q) {
+  if (!q) return true;
+  if (name.startsWith(q)) return true;
+  return name.split(' ').some(w =>
+    w.startsWith(q) ||
+    (w.startsWith('ال') && w.slice(2).startsWith(q)) ||
+    (w.startsWith('آل') && w.slice(2).startsWith(q))
+  );
+}
+
+function applyFilters() {
+  const q = nameQ.trim();
+  const d = activeDi >= 0 ? DATES[activeDi] : null;
+  let shown = 0;
+
+  TRAINERS.forEach(t => {
+    const nmOk  = wordMatch(t.name, q);
+    const dtOk  = !d || d.cols.some(ci => t.r[ci] !== '');
+    const vis   = nmOk && dtOk;
+
+    const tr = document.getElementById(`tr_${t.id}`);
+    tr.classList.toggle('tr-hide', !vis);
+    tr.classList.toggle('tr-hi',   vis && !!d);
+    if (vis) shown++;
+
+    // highlight match in name
+    const span = tr.querySelector('.nm');
+    if (span) {
+      if (q && vis) {
+        const idx = t.name.indexOf(q);
+        if (idx >= 0) {
+          span.innerHTML =
+            esc(t.name.slice(0, idx)) +
+            `<strong style="color:var(--navy);text-decoration:underline">${esc(t.name.slice(idx, idx+q.length))}</strong>` +
+            esc(t.name.slice(idx+q.length));
         } else {
-            sectionTeacher.classList.add('hide-on-print');
-            sectionDay.classList.remove('hide-on-print');
+          span.textContent = t.name;
         }
-        window.print();
+      } else {
+        span.textContent = t.name;
+      }
     }
+  });
 
-    // تحميل النتيجة كصورة
-    function downloadImage() {
-        const buttons = document.querySelectorAll('.action-buttons');
-        buttons.forEach(btn => btn.style.display = 'none'); // إخفاء الأزرار مؤقتاً
+  const bar = document.getElementById('resBar');
+  if (q || activeDi >= 0) {
+    const di = activeDi >= 0 ? ` — ${DATES[activeDi].day} ${DATES[activeDi].dd}` : '';
+    bar.textContent = `عرض ${shown} مدرباً من أصل ${TRAINERS.length}${di}`;
+  } else {
+    bar.textContent = '';
+  }
+}
 
-        const captureArea = document.getElementById('captureArea');
-        html2canvas(captureArea, {
-            backgroundColor: '#ffffff',
-            scale: 2
-        }).then(canvas => {
-            const link = document.createElement('a');
-            link.download = 'جدول_المراقبة.png';
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-            
-            buttons.forEach(btn => btn.style.display = 'flex'); // إعادة عرض الأزرار
-        });
-    }
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-    // البحث ببيانات المدرب مع معالجة الأسماء المتشابهة
-    function searchByTeacher(exactName = null) {
-        const inputField = document.getElementById('teacherName');
-        // إما أن يأخذ الاسم الممرر كمعامل (عند النقر على الأزرار) أو النص المكتوب
-        const nameInput = exactName || inputField.value.trim();
-        const resultDiv = document.getElementById('teacherResult');
-        resultDiv.innerHTML = ''; 
-        document.getElementById('dayResult').innerHTML = ''; // مسح نتائج القسم الآخر
+/* ── AUTOCOMPLETE ─────────────────────────────────────────────── */
+(function(){
+  const inp  = document.getElementById('nameInp');
+  const drop = document.getElementById('acDrop');
+  const clr  = document.getElementById('nameClear');
+  let si = -1;
 
-        if (nameInput === "") {
-            resultDiv.innerHTML = '<div class="no-data">يرجى إدخال اسم المدرب للبحث.</div>';
-            return;
-        }
+  function render(q) {
+    if (!q) { drop.style.display='none'; return; }
+    const hits = TRAINERS.filter(t => wordMatch(t.name, q)).slice(0, 10);
+    if (!hits.length) { drop.style.display='none'; return; }
+    drop.innerHTML = hits.map((t, i) => {
+      const idx = t.name.indexOf(q);
+      let dn = esc(t.name);
+      if (idx >= 0)
+        dn = esc(t.name.slice(0,idx)) +
+             `<mark>${esc(t.name.slice(idx,idx+q.length))}</mark>` +
+             esc(t.name.slice(idx+q.length));
+      return `<div class="ac-item" data-n="${esc(t.name)}" data-i="${i}">
+                <span class="ac-num">${t.id}.</span>${dn}</div>`;
+    }).join('');
+    drop.style.display='block'; si=-1;
+    drop.querySelectorAll('.ac-item').forEach(el =>
+      el.addEventListener('click', () => pick(el.dataset.n)));
+  }
 
-        // إيجاد أسماء المدربين (كأسماء فريدة) التي تحتوي على نص البحث
-        const matchedTeachersNames = [...new Set(scheduleData
-            .filter(item => item.teacher.includes(nameInput))
-            .map(item => item.teacher))];
+  function pick(name){
+    inp.value=name; nameQ=name; clr.style.display='block';
+    drop.style.display='none'; applyFilters();
+  }
 
-        if (matchedTeachersNames.length === 0) {
-            resultDiv.innerHTML = `<div class="no-data">لا توجد بيانات للمدرب المدخل. يرجى التأكد من الاسم.</div>`;
-            return;
-        }
+  inp.addEventListener('input', () => {
+    nameQ = inp.value;
+    clr.style.display = nameQ ? 'block' : 'none';
+    render(nameQ.trim()); applyFilters();
+  });
+  clr.addEventListener('click', () => {
+    inp.value=nameQ=''; clr.style.display='none';
+    drop.style.display='none'; applyFilters();
+  });
+  inp.addEventListener('keydown', e => {
+    const items = drop.querySelectorAll('.ac-item');
+    if (!items.length) return;
+    if (e.key==='ArrowDown'){e.preventDefault();si=Math.min(si+1,items.length-1);items.forEach((el,i)=>el.classList.toggle('ac-sel',i===si))}
+    else if (e.key==='ArrowUp'){e.preventDefault();si=Math.max(si-1,0);items.forEach((el,i)=>el.classList.toggle('ac-sel',i===si))}
+    else if (e.key==='Enter'&&si>=0){e.preventDefault();pick(items[si].dataset.n)}
+    else if (e.key==='Escape'){drop.style.display='none'}
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.name-wrap')) drop.style.display='none';
+  });
+})();
 
-        // إذا كان هناك أكثر من مدرب بنفس الاسم المكتوب (مثال: خالد)
-        if (matchedTeachersNames.length > 1) {
-            let choiceHTML = `
-                <div style="background:#f8fafc; padding:20px; border-radius:8px; border:1px solid var(--border-color); text-align:center;">
-                    <h3 style="color:var(--primary-color); margin-top:0;">يوجد عدة مدربين بهذا الاسم، الرجاء اختيار المدرب المطلوب:</h3>
-                    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:15px;">
-            `;
-            matchedTeachersNames.forEach(tName => {
-                choiceHTML += `<button class="choice-btn" onclick="document.getElementById('teacherName').value='${tName}'; searchByTeacher('${tName}')">${tName}</button>`;
-            });
-            choiceHTML += `</div></div>`;
-            resultDiv.innerHTML = choiceHTML;
-            return;
-        }
-
-        // إذا كان هناك مدرب واحد فقط يطابق البحث
-        const selectedTeacher = matchedTeachersNames[0];
-        const results = scheduleData.filter(item => item.teacher === selectedTeacher);
-
-        let tableHTML = `
-            <h3 style="text-align:center; color:#1a5c40;">جدول المدرب: ${selectedTeacher}</h3>
-            <table>
-                <tr>
-                    <th>اليوم والتاريخ</th>
-                    <th>الفترة</th>
-                    <th>القاعة</th>
-                </tr>
-        `;
-        results.forEach(item => {
-            tableHTML += `
-                <tr>
-                    <td>${item.date}</td>
-                    <td>${item.period}</td>
-                    <td>${item.room}</td>
-                </tr>
-            `;
-        });
-        tableHTML += `</table>`;
-        tableHTML += getActionButtonsHTML('sectionTeacher');
-        resultDiv.innerHTML = tableHTML;
-    }
-
-    // البحث حسب اليوم
-    function searchByDay() {
-        const daySelected = document.getElementById('daySelect').value;
-        const resultDiv = document.getElementById('dayResult');
-        resultDiv.innerHTML = ''; 
-        document.getElementById('teacherResult').innerHTML = ''; // مسح نتائج القسم الآخر
-
-        const results = scheduleData.filter(item => item.date === daySelected);
-
-        if (results.length > 0) {
-            let tableHTML = `
-                <h3 style="text-align:center; color:#1a5c40;">مراقبي يوم: ${daySelected}</h3>
-                <table>
-                    <tr>
-                        <th>اسم المدرب</th>
-                        <th>الفترة</th>
-                        <th>القاعة</th>
-                    </tr>
-            `;
-            results.forEach(item => {
-                tableHTML += `
-                    <tr>
-                        <td>${item.teacher}</td>
-                        <td>${item.period}</td>
-                        <td>${item.room}</td>
-                    </tr>
-                `;
-            });
-            tableHTML += `</table>`;
-            tableHTML += getActionButtonsHTML('sectionDay');
-            resultDiv.innerHTML = tableHTML;
-        } else {
-            resultDiv.innerHTML = `<div class="no-data">عذراً، لا يوجد مدربون مكلفون بالمراقبة في هذا اليوم.</div>`;
-        }
-    }
+/* ── SAVE IMAGE ───────────────────────────────────────────────── */
+document.getElementById('imgBtn').addEventListener('click', async () => {
+  const btn=document.getElementById('imgBtn');
+  const ctrl=document.getElementById('ctrlBar');
+  const res=document.getElementById('resBar');
+  btn.disabled=true; btn.textContent='⏳ جاري الحفظ…';
+  ctrl.style.display='none'; res.style.display='none';
+  window.scrollTo(0,0);
+  await new Promise(r=>setTimeout(r,150));
+  try {
+    const canvas = await html2canvas(document.body,{
+      scale:2, useCORS:true, backgroundColor:'#f8f5ee',
+      scrollX:0, scrollY:0,
+      windowWidth:document.body.scrollWidth,
+      windowHeight:document.body.scrollHeight
+    });
+    const a=document.createElement('a');
+    a.download='جدول-المراقبات-1447.png';
+    a.href=canvas.toDataURL('image/png'); a.click();
+  } catch {
+    alert('تعذّر الحفظ. استخدم زر "طباعة" بدلاً من ذلك.');
+  } finally {
+    ctrl.style.display='flex'; res.style.display='block';
+    btn.disabled=false; btn.innerHTML='📸 حفظ صورة';
+  }
+});
 </script>
-
 </body>
 </html>
